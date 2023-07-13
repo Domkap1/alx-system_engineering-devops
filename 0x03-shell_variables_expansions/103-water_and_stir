@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "Result in base bestchol: $(($(echo "$WATER" | base -d water) + $(echo "$STIR" | base -d stir)) | base bestchol)"
+echo "Result in base bestchol: $(echo "$WATER" | base -d water | { read a; echo "$((a + $(echo "$STIR" | base -d stir)))"; } | base bestchol)"
