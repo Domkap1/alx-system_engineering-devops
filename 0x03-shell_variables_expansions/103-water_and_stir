@@ -1,2 +1,2 @@
 #!/bin/bash
-WATER="ewwatratewa"; STIR="ti.itirtrtr"; converted_water=$(echo "$WATER" | tr 'ewatr' '01234'); converted_stir=$(echo "$STIR" | tr 'tir.' '01234'); result=$((converted_water + converted_stir)); final_result=$(echo "obase=8; $result" | bc); echo "$final_result" | tr '01234567' 'bestchol'
+export WATER="ewwatratewa" STIR="ti.itirtrtr"; echo -n "$WATER$STIR" | tr 'ewatrist.' '0123456789' | tr '01234567' 'bestchol'
