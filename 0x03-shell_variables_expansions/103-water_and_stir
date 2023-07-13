@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "The sum of WATER and STIR is: $(($WATER + $STIR))"
+echo "Result in base bestchol: $(($(echo "$WATER" | base -d water) + $(echo "$STIR" | base -d stir)) | base bestchol)"
