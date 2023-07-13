@@ -1,3 +1,3 @@
 #!/bin/bash
-result=$(echo "$WATER" | tr -d 'water' | tr -d 'a' | tr -d 'e' | tr 'ti.' '012' | tr -d 'rt' | tr '0-2' '01234567')
-echo "$result" | tr 01234567 bestchol
+result=$(echo -n "$WATER" | tr 'water' '01234' | tr 'stir.' '01234' | tr -d '\n' | tr -d '\r')
+echo "$result" | tr '01234567' 'bestchol'
