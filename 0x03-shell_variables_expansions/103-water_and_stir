@@ -1,2 +1,2 @@
 #!/bin/bash
-printf "%s\n" "$WATER" | tr 'ewatr' '01234' | awk '{print $0 + strtonum(ENVIRON["STIR"])}' | tr '01234567' 'bestchol'
+WATER="ewwatratewa"; STIR="ti.itirtrtr"; converted_water=$(echo "$WATER" | tr 'ewatr' '01234'); converted_stir=$(echo "$STIR" | tr 'tir.' '01234'); result=$((converted_water + converted_stir)); final_result=$(echo "obase=8; $result" | bc); echo "$final_result" | tr '01234567' 'bestchol'
