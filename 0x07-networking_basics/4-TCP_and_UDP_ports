@@ -1,56 +1,5 @@
 #!/usr/bin/env bash
+# Displays listening ports. Includes listening sockets as well
+# + as the PID and name of the program to which each socket belongs.
 
-echo "Active Internet connections (only servers)"
-echo "Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name"
-
-# Get TCP and UDP listening ports and their corresponding PIDs
-tcp_listening_ports=$(sudo netstat -tuln | grep 'LISTEN' | grep -E 'tcp' | awk '{print $4}')
-udp_listening_ports=$(sudo netstat -tuln | grep 'LISTEN' | grep -E 'udp' | awk '{print $4}')
-
-# Loop through TCP listening ports
-for port in $tcp_listening_ports; do
-    # Extract the port number and protocol
-    port_number=$(echo "$port" | awk -F: '{print $NF}')
-    protocol=$(echo "$port" | awk -F: '{print $1}')
-
-    # Get the PID and program name associated with the port
-    pid_prog=$(sudo netstat -tuln | grep "$port" | awk '{print $7}')
-    pid=$(echo "$pid_prog" | cut -d/ -f1)
-    prog=$(echo "$pid_prog" | cut -d/ -f2-)
-
-    # Output PID, program name, and port
-    echo "$protocol    *:$port_number        *:*                     LISTEN      $pid/$prog"
-done
-
-# Loop through UDP listening ports
-for port in $udp_listening_ports; do
-    # Extract the port number and protocol
-    port_number=$(echo "$port" | awk -F: '{print $NF}')
-    protocol=$(echo "$port" | awk -F: '{print $1}')
-
-    # Get the PID and program name associated with the port
-    pid_prog=$(sudo netstat -tuln | grep "$port" | awk '{print $7}')
-    pid=$(echo "$pid_prog" | cut -d/ -f1)
-    prog=$(echo "$pid_prog" | cut -d/ -f2-)
-
-    # Output PID, program name, and port
-    echo "$protocol    *:$port_number        *:*                                 $pid/$prog"
-done
-
-echo "Active UNIX domain sockets (only servers)"
-echo "Proto RefCnt Flags       Type       State         I-Node   PID/Program name    Path"
-
-# Get UNIX domain listening sockets and their corresponding PIDs
-unix_listening_sockets=$(sudo netstat -x | grep 'LISTEN' | awk '{print $6}')
-
-# Loop through UNIX domain listening sockets
-for socket in $unix_listening_sockets; do
-    # Get the PID and program name associated with the socket
-    pid_prog=$(sudo netstat -x | grep "$socket" | awk '{print $7}')
-    pid=$(echo "$pid_prog" | cut -d/ -f1)
-    prog=$(echo "$pid_prog" | cut -d/ -f2-)
-
-    # Output PID, program name, and socket
-    echo "unix       -      -           -         LISTENING     -         $pid/$prog       $socket"
-done
-
+netstat -l --program
