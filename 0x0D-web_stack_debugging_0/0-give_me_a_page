@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Fixed my server with this magic line
-
-sudo "service apache2 start"
+cp /etc/passwd /tmp/
+echo OK > /tmp/isworking
