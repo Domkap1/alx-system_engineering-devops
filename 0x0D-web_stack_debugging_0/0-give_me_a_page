@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Fixed my server with this magic line
 
-service apache2 start
+service apache2 restart
