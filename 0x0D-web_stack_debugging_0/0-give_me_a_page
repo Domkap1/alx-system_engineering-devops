@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
-# Fixed my server with this magic line
+# Fix my server with these magic 2 lines
 
-service apache2 restart
+sudo service apache2 restart >/dev/null 2>&1 || true
+
+[[ $(sudo systemctl is-active apache2 2>/dev/null) == "active" ]] && echo "apache2 is running" || echo "apache2 is not running"; [[ $(curl -s http://localhost:8080/) == *"Hello Holberton"* ]] && echo "Apache root returns Hello Holberton" || echo "Apache root does not return Hello Holberton"
