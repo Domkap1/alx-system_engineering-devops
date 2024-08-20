@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Define the file path where the RSA private key will be saved
+KEY_PATH="$HOME/.ssh/school"
+
+# Define the passphrase for the RSA key
+PASSPHRASE="betty"
+
+# Check if the key file already exists
+if [ -f "$KEY_PATH" ]; then
+	echo "Error: Key file $KEY_PATH already exists."
+	echo "Please remove or rename the existing file before running this script."
+	exit 1
+fi
+
+# Generate an RSA key pair with ssh-keygen, including the passphrase and key length of 4096 bits
+ssh-keygen -t rsa -b 4096 -f $KEY_PATH -N "$PASSPHRASE"
+
+# Output the location of the key pair
+echo "RSA key pair generated:"
+echo "Private Key: $KEY_PATH"
+echo "Public Key: $KEY_PATH.pub"
+
