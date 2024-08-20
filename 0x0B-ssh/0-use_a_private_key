@@ -2,12 +2,6 @@
 # Define the server's address or hostname
 SERVER_ADDRESS="54.160.103.217"
 
-# Define the path to the private key
-PRIVATE_KEY="~/.ssh/school"
-
-# Define the username
-USERNAME="ubuntu"
-
-# Use SSH to connect to the server with single-character flags
-ssh -i $PRIVATE_KEY $USERNAME@$SERVER_ADDRESS
+# Define the username directly in the SSH command
+ssh -i ~/.ssh/school ubuntu@$SERVER_ADDRESS
 
