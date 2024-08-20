@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Define the server's address or hostname
 SERVER_ADDRESS="54.160.103.217"
 
